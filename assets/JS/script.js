@@ -13,7 +13,26 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+var randomFunc = {
+    lower: getRandomLower,
+    upper: getRandomUpper,
+    number: getRandomNumber,
+    symbol: getRandomSymbol
+}
 
+// Prompt for password length
+var lengthAccept = function() {
+    var lengthPrompt = prompt("How long do you want your password? Password needs to be between 8 and 128 characters.");
+    if (isNaN(lengthPrompt) || lengthPrompt === "") {
+        return lengthAccept();
+    }
+    var lengthNumber = parseInt(lengthPrompt);
+    //console.log(lengthPrompt);
+    if (lengthNumber < 8 || lengthNumber > 128) {
+        return lengthAccept();
+    }
+    return lengthNumber;
+}
 
 
 //Generator Functions
