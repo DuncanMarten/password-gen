@@ -34,6 +34,41 @@ var lengthAccept = function() {
     return lengthNumber;
 }
 
+function randomNumber() {
+    var random = Math.floor(Math.random()*4 + 1);
+    return random;
+}
+
+console.log(randomNumber());
+// Generate password function
+function generatePassword(lower, upper, number, symbol, length) {
+    // Initial password string
+    var genPass = "";
+    var length = lengthAccept();
+    var lowerPrompt = confirm("Do you want lowercase letters?");
+    var upperPrompt = confirm("Do you want uppercase letters?");
+    var numberPrompt = confirm("Do you want numbers?");
+    var symbolPrompt = confirm("Do you want special characters?");
+
+    var charAccept = lowerPrompt + upperPrompt + numberPrompt + symbolPrompt;
+    //console.log('charAccept ', charAccept);
+
+    var charArr = [{lowerPrompt}, {upperPrompt}, {numberPrompt}, {symbolPrompt}].filter(
+        item => Object.values(item) [0]
+    );
+    //console.log('charArr ', charArr);
+
+    if (charAccept === 0) {
+        return generatePassword();
+    }
+
+    //debugger;
+    // Loop through to get password
+    for (var i = 0; i < length; i++) {
+        //var getRandomCharacter = ;
+    }
+}
+
 
 //Generator Functions
 
