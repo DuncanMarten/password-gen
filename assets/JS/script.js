@@ -16,11 +16,14 @@ generateBtn.addEventListener("click", writePassword);
 // Prompt for password length
 var lengthAccept = function() {
     var lengthPrompt = prompt("How long do you want your password? Password needs to be between 8 and 128 characters.");
+    
+    // Prompt only accepts numbers
     if (isNaN(lengthPrompt) || lengthPrompt === "") {
         return lengthAccept();
     }
     var lengthNumber = parseInt(lengthPrompt);
-    //console.log(lengthPrompt);
+    
+    // Password needs to be between 8 - 128 characters
     if (lengthNumber < 8 || lengthNumber > 128) {
         return lengthAccept();
     }
@@ -31,6 +34,8 @@ var lengthAccept = function() {
 function generatePassword(lower, upper, number, symbol, length) {
     // Initial password string
     var genPass = "";
+
+    // Length of Password
     var length = lengthAccept();
     
     // Confirming if user wants to include certain characters
@@ -39,9 +44,8 @@ function generatePassword(lower, upper, number, symbol, length) {
     var numberPrompt = confirm("Do you want numbers?");
     var symbolPrompt = confirm("Do you want special characters?");
 
-    var charSet = "";
-
     // Function to add acceptable characters with each other
+    var charSet = "";
     function addChar() {
         if (lowerPrompt === true){
             charSet = charSet + "abcdefghijklmnopqrstuvwxyz";
@@ -58,10 +62,11 @@ function generatePassword(lower, upper, number, symbol, length) {
         return charSet;
     }        
 
+    // Calling character list function
     addChar();
 
+    // Checking to see if no characters were selected
     var charAccept = lowerPrompt + upperPrompt + numberPrompt + symbolPrompt;
-    
     if (charAccept === 0) {
         return generatePassword();
     }
