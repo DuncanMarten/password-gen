@@ -32,38 +32,40 @@ function generatePassword(lower, upper, number, symbol, length) {
     // Initial password string
     var genPass = "";
     var length = lengthAccept();
-    var lowerPrompt = confirm("Do you want lowercase letters?");
-        console.log(lowerPrompt);
-        
-    var upperPrompt = confirm("Do you want uppercase letters?");
-        console.log(upperPrompt);
-        
-    var numberPrompt = confirm("Do you want numbers?");
-        console.log(numberPrompt);
-
-    var symbolPrompt = confirm("Do you want special characters?");
-        console.log(symbolPrompt);
-
     
-        
+    // Confirming if user wants to include certain characters
+    var lowerPrompt = confirm("Do you want lowercase letters?");
+    var upperPrompt = confirm("Do you want uppercase letters?");
+    var numberPrompt = confirm("Do you want numbers?");
+    var symbolPrompt = confirm("Do you want special characters?");
+
+    var charSet = "";
+
+    // Function to add acceptable characters with each other
+    function addChar() {
+        if (lowerPrompt === true){
+            charSet = charSet + "abcdefghijklmnopqrstuvwxyz";
+        }
+        if (upperPrompt === true){
+            charSet = charSet + "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        }
+        if (numberPrompt === true){
+            charSet = charSet + "1234567890";
+        }
+        if (symbolPrompt === true){
+            charSet = charSet + "~!@#$%^&*()_+|?><";
+        }
+        return charSet;
+    }        
+
+    addChar();
 
     var charAccept = lowerPrompt + upperPrompt + numberPrompt + symbolPrompt;
     
-
-    var charArr = [{lowerPrompt}, {upperPrompt}, {numberPrompt}, {symbolPrompt}].filter(
-        item => Object.values(item) [0]
-    );
-    
-    //var charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890~!@#$%^&*()_+|?><";
-
-    var genPass = "";
-
-
     if (charAccept === 0) {
         return generatePassword();
     }
 
-    //debugger;
     // Loop through to get password
     for (var i = 0; i < length; i++) {
         genPass = genPass + charSet.charAt(Math.floor(Math.random() * Math.floor(charSet.length - 1)));
